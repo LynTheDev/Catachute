@@ -1,0 +1,220 @@
+[gd_scene load_steps=21 format=3 uid="uid://wqkfajqw6ohg"]
+
+[ext_resource type="FontFile" uid="uid://gshbcghnt66a" path="res://Assets/Font/Silkscreen-Regular.ttf" id="1_7yiut"]
+[ext_resource type="Script" path="res://Scripts/States/Game.gd" id="1_nq1ar"]
+[ext_resource type="Texture2D" uid="uid://c064ropuqct40" path="res://Assets/OnlineAssets/nightbackgroundwithmoon.png" id="1_ny28l"]
+[ext_resource type="PackedScene" uid="uid://d2fboo6vx4wi5" path="res://Scenes/Entities/Player.tscn" id="1_uj6xe"]
+[ext_resource type="AudioStream" uid="uid://kc1eg3qvg8kq" path="res://Assets/Sound/Music/GameMusic.mp3" id="2_4otxl"]
+[ext_resource type="AudioStream" uid="uid://2hs50lnvfsma" path="res://Assets/Sound/Ambient/Wind.mp3" id="2_i46vs"]
+[ext_resource type="Script" path="res://Scripts/Managers/BeanManager.gd" id="3_jcmrx"]
+[ext_resource type="Script" path="res://Scripts/Managers/CloudManager.gd" id="3_jgwud"]
+[ext_resource type="Script" path="res://Scripts/Managers/ObstacleManager.gd" id="3_yrkgu"]
+[ext_resource type="Script" path="res://Scripts/Managers/PauseManager.gd" id="4_vfpoe"]
+[ext_resource type="Texture2D" uid="uid://dhvg4jh61lmv" path="res://Assets/Buttons/ResumeButtonIdle.png" id="9_l6w4c"]
+[ext_resource type="Texture2D" uid="uid://bmnioc0nnse7t" path="res://Assets/Buttons/ResumeButtonHover.png" id="10_gvrtc"]
+[ext_resource type="Texture2D" uid="uid://bdq3jfinf0jfn" path="res://Assets/Buttons/BackToMenuButtonIdle.png" id="11_ji7y0"]
+[ext_resource type="Texture2D" uid="uid://byavyanmph8bm" path="res://Assets/Buttons/BackToMenuButtonHover.png" id="12_unwsi"]
+[ext_resource type="AudioStream" uid="uid://d6q1nny2pjsc" path="res://Assets/Sound/SFX/click.mp3" id="15_e2u35"]
+[ext_resource type="Texture2D" uid="uid://cpfgqn82sgloa" path="res://Assets/Buttons/Android/BtnLeft.png" id="16_lssop"]
+[ext_resource type="Texture2D" uid="uid://skguexynjkip" path="res://Assets/Buttons/Android/BtnRight.png" id="17_djglg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ys3il"]
+font = ExtResource("1_7yiut")
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_d6hcc"]
+font = ExtResource("1_7yiut")
+font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_r5i61"]
+font = ExtResource("1_7yiut")
+font_size = 60
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_nq1ar")
+
+[node name="LeftAndroidBtn" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.509804)
+position = Vector2(44, 494)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("16_lssop")
+action = "left"
+visibility_mode = 1
+
+[node name="RightAndroidBtn" type="TouchScreenButton" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+position = Vector2(980, 494)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("17_djglg")
+action = "right"
+visibility_mode = 1
+
+[node name="AmbientPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_i46vs")
+volume_db = -1.0
+autoplay = true
+bus = &"Ambience"
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_4otxl")
+autoplay = true
+bus = &"Music"
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+bus = &"Sfx"
+
+[node name="UIView" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="UI" type="Control" parent="UIView"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Distance" type="Label" parent="UIView/UI"]
+layout_mode = 0
+offset_right = 698.0
+offset_bottom = 53.0
+text = "Distance: 0m"
+label_settings = SubResource("LabelSettings_ys3il")
+
+[node name="Beans" type="Label" parent="UIView/UI"]
+layout_mode = 1
+offset_left = 2.0
+offset_top = 45.0
+offset_right = 706.0
+offset_bottom = 84.0
+text = "Beans: "
+label_settings = SubResource("LabelSettings_d6hcc")
+
+[node name="DebugStuff" type="Label" parent="UIView/UI"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 302.0
+offset_right = 60.0
+offset_bottom = 325.0
+
+[node name="BackgroundView" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BackgroundView"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BackgroundView/ParallaxBackground"]
+
+[node name="Skies" type="Sprite2D" parent="BackgroundView/ParallaxBackground/ParallaxLayer"]
+position = Vector2(578, 410)
+scale = Vector2(1.12891, 1.07422)
+texture = ExtResource("1_ny28l")
+
+[node name="ObstacleManager" type="Node" parent="."]
+script = ExtResource("3_yrkgu")
+
+[node name="Rocks" type="Node" parent="ObstacleManager"]
+
+[node name="RockSpawner" type="Timer" parent="ObstacleManager/Rocks"]
+wait_time = 2.0
+
+[node name="FloatingRockSpawner" type="Timer" parent="ObstacleManager/Rocks"]
+wait_time = 2.0
+
+[node name="CloudManager" type="Node" parent="."]
+script = ExtResource("3_jgwud")
+
+[node name="CloudSpawner" type="Timer" parent="CloudManager"]
+wait_time = 0.6
+
+[node name="Player" parent="." instance=ExtResource("1_uj6xe")]
+position = Vector2(595, 209)
+
+[node name="BeanManager" type="Node" parent="."]
+script = ExtResource("3_jcmrx")
+
+[node name="BeanSpawner" type="Timer" parent="BeanManager"]
+wait_time = 3.0
+
+[node name="PowerupManager" type="Node" parent="."]
+
+[node name="PauseView" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Pause" type="Control" parent="PauseView"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_vfpoe")
+
+[node name="Background" type="ColorRect" parent="PauseView/Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.631373)
+
+[node name="Paused" type="Label" parent="PauseView/Pause"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -131.5
+offset_top = 80.0
+offset_right = 131.5
+offset_bottom = 160.0
+grow_horizontal = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_r5i61")
+
+[node name="ResumeButton" type="TextureButton" parent="PauseView/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -55.0
+offset_right = -26.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture_normal = ExtResource("9_l6w4c")
+texture_hover = ExtResource("10_gvrtc")
+
+[node name="BackToMenuButton" type="TextureButton" parent="PauseView/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -8.0
+offset_right = -47.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+texture_normal = ExtResource("11_ji7y0")
+texture_hover = ExtResource("12_unwsi")
+
+[node name="SFXPlayerSpecial" type="AudioStreamPlayer2D" parent="PauseView/Pause"]
+position = Vector2(0, 1)
+stream = ExtResource("15_e2u35")
+bus = &"Sfx"
+
+[connection signal="timeout" from="ObstacleManager/Rocks/RockSpawner" to="ObstacleManager" method="_on_rock_spawner_timeout"]
+[connection signal="timeout" from="ObstacleManager/Rocks/FloatingRockSpawner" to="ObstacleManager" method="_on_floating_rock_spawner_timeout"]
+[connection signal="timeout" from="CloudManager/CloudSpawner" to="CloudManager" method="_on_cloud_spawner_timeout"]
+[connection signal="timeout" from="BeanManager/BeanSpawner" to="BeanManager" method="_on_bean_spawner_timeout"]
+[connection signal="pressed" from="PauseView/Pause/ResumeButton" to="PauseView/Pause" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseView/Pause/BackToMenuButton" to="PauseView/Pause" method="_on_back_to_menu_button_pressed"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkqeoshquo8he"]
+
+[ext_resource type="Texture2D" uid="uid://bu2x2iwy7uo3h" path="res://Assets/Entities/Obstacles/FloatingRock.png" id="1_3rvja"]
+[ext_resource type="Script" path="res://Scripts/Entities/Rocks/FloatingRock.gd" id="1_76xrv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_edyv8"]
+size = Vector2(50.75, 12.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ylxa2"]
+size = Vector2(35, 3.25)
+
+[node name="FloatingRock" type="Area2D"]
+position = Vector2(826, 688)
+scale = Vector2(4, 4)
+collision_layer = 4
+script = ExtResource("1_76xrv")
+metadata/_edit_group_ = true
+
+[node name="FRock" type="Sprite2D" parent="."]
+texture = ExtResource("1_3rvja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.375, 3.875)
+shape = SubResource("RectangleShape2D_edyv8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-1.75, -4.375)
+shape = SubResource("RectangleShape2D_ylxa2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

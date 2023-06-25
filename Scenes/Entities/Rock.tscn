@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmpen0ttor1vo"]
+
+[ext_resource type="Texture2D" uid="uid://cg7juac4hha6k" path="res://Assets/Entities/Obstacles/Rock.png" id="1_fcsqo"]
+[ext_resource type="Script" path="res://Scripts/Entities/Rocks/Rock.gd" id="1_gynbl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fabfq"]
+size = Vector2(269, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ur3fb"]
+size = Vector2(192, 28)
+
+[node name="Rock" type="Area2D"]
+position = Vector2(160, 699)
+collision_layer = 4
+script = ExtResource("1_gynbl")
+metadata/_edit_group_ = true
+
+[node name="RockSprite" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_fcsqo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-12.5, 17)
+shape = SubResource("RectangleShape2D_fabfq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-52, -10)
+shape = SubResource("RectangleShape2D_ur3fb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

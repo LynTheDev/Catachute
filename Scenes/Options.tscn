@@ -1,0 +1,276 @@
+[gd_scene load_steps=15 format=3 uid="uid://dyj6r7gif1m1s"]
+
+[ext_resource type="Texture2D" uid="uid://c064ropuqct40" path="res://Assets/OnlineAssets/nightbackgroundwithmoon.png" id="1_rkslk"]
+[ext_resource type="Script" path="res://Scripts/States/Options.gd" id="1_ywmbh"]
+[ext_resource type="FontFile" uid="uid://gshbcghnt66a" path="res://Assets/Font/Silkscreen-Regular.ttf" id="2_akiah"]
+[ext_resource type="Texture2D" uid="uid://dqb45xs3dv146" path="res://Assets/Buttons/OptionsBackButtonIdle.png" id="3_8mu6h"]
+[ext_resource type="Texture2D" uid="uid://d18n40oukanr2" path="res://Assets/Buttons/CheckMarkIdle.png" id="4_g0gmt"]
+[ext_resource type="Texture2D" uid="uid://t0uirm11f231" path="res://Assets/Buttons/OptionsBackButtonHover.png" id="4_wqnuv"]
+[ext_resource type="Texture2D" uid="uid://vj7px6kld8x6" path="res://Assets/Buttons/CheckMarkChecked.png" id="5_h03ip"]
+[ext_resource type="AudioStream" uid="uid://d6q1nny2pjsc" path="res://Assets/Sound/SFX/click.mp3" id="8_1yj6k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5slga"]
+font = ExtResource("2_akiah")
+font_size = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_yp707"]
+font = ExtResource("2_akiah")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_p1w88"]
+font = ExtResource("2_akiah")
+font_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_tdrnm"]
+font = ExtResource("2_akiah")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_giwmy"]
+font = ExtResource("2_akiah")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_oet37"]
+font = ExtResource("2_akiah")
+
+[node name="Options" type="Node2D"]
+script = ExtResource("1_ywmbh")
+
+[node name="BackgroundView" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BackgroundView"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BackgroundView/ParallaxBackground"]
+
+[node name="Skies" type="Sprite2D" parent="BackgroundView/ParallaxBackground/ParallaxLayer"]
+position = Vector2(576.5, 410)
+scale = Vector2(1.13184, 1.07422)
+texture = ExtResource("1_rkslk")
+
+[node name="UIView" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="UI" type="Control" parent="UIView"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BackGround" type="ColorRect" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.584314)
+
+[node name="FullScreenLabel" type="Label" parent="UIView/UI"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 196.0
+offset_right = 227.0
+offset_bottom = 232.0
+text = "FullScreen:"
+label_settings = SubResource("LabelSettings_5slga")
+
+[node name="FullScreenCheck" type="TextureButton" parent="UIView/UI"]
+layout_mode = 0
+offset_left = 244.0
+offset_top = 197.0
+offset_right = 260.0
+offset_bottom = 213.0
+scale = Vector2(2, 2)
+toggle_mode = true
+texture_normal = ExtResource("4_g0gmt")
+
+[node name="CreditsLabel" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 143.0
+offset_top = 300.0
+offset_right = 348.0
+offset_bottom = 342.0
+grow_horizontal = 2
+text = "Credits: "
+label_settings = SubResource("LabelSettings_yp707")
+
+[node name="CreditsLabel" type="Label" parent="UIView/UI/CreditsLabel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.5
+offset_top = 37.0
+offset_right = 308.5
+offset_bottom = 97.0
+grow_horizontal = 2
+text = "THEJEGO/SPuddy: Playtesting
+Cania: Backgrounds
+spuddy: ideas
+"
+label_settings = SubResource("LabelSettings_p1w88")
+
+[node name="ControlLabel" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 143.0
+offset_top = 172.0
+offset_right = 348.0
+offset_bottom = 214.0
+grow_horizontal = 2
+text = "Controls: "
+label_settings = SubResource("LabelSettings_yp707")
+
+[node name="ControlLabel" type="Label" parent="UIView/UI/ControlLabel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -65.5
+offset_top = 37.0
+offset_right = 212.5
+offset_bottom = 97.0
+grow_horizontal = 2
+text = "A/D: STEER Left/Right
+ESC/P: PAUSE/UNPAUSE"
+label_settings = SubResource("LabelSettings_p1w88")
+
+[node name="SettingsLabel" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.0
+offset_top = 37.0
+offset_right = 172.0
+offset_bottom = 131.0
+grow_horizontal = 2
+text = "Options"
+label_settings = SubResource("LabelSettings_tdrnm")
+
+[node name="SoundLabel" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = -54.0
+offset_right = 177.0
+offset_bottom = -12.0
+grow_vertical = 2
+scale = Vector2(1, 1.00561)
+text = "Mute Sound:"
+label_settings = SubResource("LabelSettings_giwmy")
+
+[node name="MusicLabel" type="Label" parent="UIView/UI/SoundLabel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 63.0
+offset_right = 64.0
+offset_bottom = 87.0
+text = "Music:"
+label_settings = SubResource("LabelSettings_oet37")
+
+[node name="MusicMute" type="TextureButton" parent="UIView/UI/SoundLabel/MusicLabel"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 1.0
+offset_right = 94.0
+offset_bottom = 17.0
+scale = Vector2(1.5, 1.5)
+toggle_mode = true
+texture_normal = ExtResource("4_g0gmt")
+
+[node name="SFXLabel" type="Label" parent="UIView/UI/SoundLabel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 92.0
+offset_right = 44.0
+offset_bottom = 116.0
+text = "SFX:"
+label_settings = SubResource("LabelSettings_oet37")
+
+[node name="SFXMute" type="TextureButton" parent="UIView/UI/SoundLabel/SFXLabel"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = -1.0
+offset_right = 94.0
+offset_bottom = 15.0
+scale = Vector2(1.5, 1.5)
+toggle_mode = true
+texture_normal = ExtResource("4_g0gmt")
+
+[node name="MasterLabel" type="Label" parent="UIView/UI/SoundLabel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 37.0
+offset_right = 86.0
+offset_bottom = 61.0
+text = "Master: "
+label_settings = SubResource("LabelSettings_oet37")
+
+[node name="MasterMute" type="TextureButton" parent="UIView/UI/SoundLabel/MasterLabel"]
+layout_mode = 0
+offset_left = 78.0
+offset_right = 94.0
+offset_bottom = 16.0
+scale = Vector2(1.5, 1.5)
+toggle_mode = true
+texture_normal = ExtResource("5_h03ip")
+
+[node name="AmbienceLabel" type="Label" parent="UIView/UI/SoundLabel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 118.336
+offset_right = 86.0
+offset_bottom = 142.336
+text = "Amb: "
+label_settings = SubResource("LabelSettings_oet37")
+
+[node name="AmbienceMute" type="TextureButton" parent="UIView/UI/SoundLabel/AmbienceLabel"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = -1.0
+offset_right = 94.0
+offset_bottom = 15.0
+scale = Vector2(1.5, 1.5)
+toggle_mode = true
+texture_normal = ExtResource("5_h03ip")
+
+[node name="TextureButton" type="TextureButton" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -97.0
+offset_right = 28.0
+offset_bottom = -83.0
+grow_vertical = 0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("3_8mu6h")
+texture_hover = ExtResource("4_wqnuv")
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
+stream = ExtResource("8_1yj6k")
+bus = &"Sfx"
+
+[connection signal="pressed" from="UIView/UI/FullScreenCheck" to="." method="_on_full_screen_check_pressed"]
+[connection signal="toggled" from="UIView/UI/FullScreenCheck" to="." method="_on_full_screen_check_toggled"]
+[connection signal="pressed" from="UIView/UI/SoundLabel/MusicLabel/MusicMute" to="." method="_on_music_mute_pressed"]
+[connection signal="toggled" from="UIView/UI/SoundLabel/MusicLabel/MusicMute" to="." method="_on_music_mute_toggled"]
+[connection signal="pressed" from="UIView/UI/SoundLabel/SFXLabel/SFXMute" to="." method="_on_sfx_mute_pressed"]
+[connection signal="toggled" from="UIView/UI/SoundLabel/SFXLabel/SFXMute" to="." method="_on_sfx_mute_toggled"]
+[connection signal="pressed" from="UIView/UI/SoundLabel/MasterLabel/MasterMute" to="." method="_on_master_mute_pressed"]
+[connection signal="toggled" from="UIView/UI/SoundLabel/MasterLabel/MasterMute" to="." method="_on_master_mute_toggled"]
+[connection signal="pressed" from="UIView/UI/SoundLabel/AmbienceLabel/AmbienceMute" to="." method="_on_ambience_mute_pressed"]
+[connection signal="toggled" from="UIView/UI/SoundLabel/AmbienceLabel/AmbienceMute" to="." method="_on_ambience_mute_toggled"]
+[connection signal="pressed" from="UIView/UI/TextureButton" to="." method="_on_texture_button_pressed"]

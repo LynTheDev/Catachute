@@ -1,0 +1,120 @@
+[gd_scene load_steps=14 format=3 uid="uid://b6gjmblg7kr3t"]
+
+[ext_resource type="Script" path="res://Scripts/States/MainMenu.gd" id="1_r0a8x"]
+[ext_resource type="Texture2D" uid="uid://c064ropuqct40" path="res://Assets/OnlineAssets/nightbackgroundwithmoon.png" id="2_72xc4"]
+[ext_resource type="AudioStream" uid="uid://d6q1nny2pjsc" path="res://Assets/Sound/SFX/click.mp3" id="2_yimyk"]
+[ext_resource type="Texture2D" uid="uid://cxr48sl306eps" path="res://Assets/Buttons/QuitButtonIdle.png" id="3_srrvh"]
+[ext_resource type="Texture2D" uid="uid://dvfx8wxru1rwa" path="res://Assets/Buttons/QuitButtonHover.png" id="4_ysugo"]
+[ext_resource type="Texture2D" uid="uid://bipy4lj1sr3c1" path="res://Assets/Buttons/OptionsButtonIdle.png" id="5_u1jrs"]
+[ext_resource type="Texture2D" uid="uid://bt8kdo37gob1r" path="res://Assets/Buttons/OptionsButtonHover.png" id="6_kh485"]
+[ext_resource type="Texture2D" uid="uid://dhwd2ejrdge2v" path="res://Assets/Buttons/ShopButtonIdle.png" id="7_8xrgp"]
+[ext_resource type="Texture2D" uid="uid://yi53aaoit78b" path="res://Assets/Buttons/ShopButtonHover.png" id="8_w3lh6"]
+[ext_resource type="Texture2D" uid="uid://dpte6tlhrxuk3" path="res://Assets/Buttons/PlayButtonIdle.png" id="9_wbewy"]
+[ext_resource type="Texture2D" uid="uid://dtklk1acfqo5i" path="res://Assets/Buttons/PlayButtonHover.png" id="10_ra6xc"]
+[ext_resource type="FontFile" uid="uid://gshbcghnt66a" path="res://Assets/Font/Silkscreen-Regular.ttf" id="11_ssm6g"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_412hl"]
+font = ExtResource("11_ssm6g")
+font_size = 70
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_r0a8x")
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_yimyk")
+bus = &"Sfx"
+
+[node name="BackgroundView" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BackgroundView"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BackgroundView/ParallaxBackground"]
+
+[node name="Skies" type="Sprite2D" parent="BackgroundView/ParallaxBackground/ParallaxLayer"]
+position = Vector2(576.5, 410)
+scale = Vector2(1.13184, 1.07422)
+texture = ExtResource("2_72xc4")
+
+[node name="UIView" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UIView"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuitButton" type="TextureButton" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -81.0001
+offset_right = 61.0
+offset_bottom = -69.0001
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("3_srrvh")
+texture_hover = ExtResource("4_ysugo")
+
+[node name="OptionsButton" type="TextureButton" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -147.0
+offset_right = 92.0
+offset_bottom = -137.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("5_u1jrs")
+texture_hover = ExtResource("6_kh485")
+
+[node name="ShopButton" type="TextureButton" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 31.0
+offset_top = -215.0
+offset_right = 69.0
+offset_bottom = -205.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("7_8xrgp")
+texture_hover = ExtResource("8_w3lh6")
+
+[node name="PlayButton" type="TextureButton" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -286.0
+offset_right = 70.0
+offset_bottom = -276.0
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture_normal = ExtResource("9_wbewy")
+texture_hover = ExtResource("10_ra6xc")
+
+[node name="Label" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -19.0
+offset_top = 58.0
+offset_right = 21.0
+offset_bottom = 81.0
+grow_horizontal = 2
+text = "Catachute"
+label_settings = SubResource("LabelSettings_412hl")
+
+[connection signal="pressed" from="UIView/UI/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="UIView/UI/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="UIView/UI/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="UIView/UI/PlayButton" to="." method="_on_play_button_pressed"]

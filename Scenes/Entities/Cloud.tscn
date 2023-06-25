@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://btvl1iwumihyp"]
+
+[ext_resource type="Script" path="res://Scripts/Entities/Cloud.gd" id="1_imfsm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45mab"]
+size = Vector2(6, 3)
+
+[node name="Cloud" type="Area2D"]
+position = Vector2(384, 174)
+script = ExtResource("1_imfsm")
+metadata/_edit_group_ = true
+
+[node name="CloudSprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1.5)
+shape = SubResource("RectangleShape2D_45mab")

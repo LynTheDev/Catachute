@@ -1,0 +1,286 @@
+[gd_scene load_steps=16 format=3 uid="uid://bhugp2lw1ubg8"]
+
+[ext_resource type="Texture2D" uid="uid://c064ropuqct40" path="res://Assets/OnlineAssets/nightbackgroundwithmoon.png" id="1_7slgv"]
+[ext_resource type="Script" path="res://Scripts/States/Shop.gd" id="1_w2yxk"]
+[ext_resource type="FontFile" uid="uid://gshbcghnt66a" path="res://Assets/Font/Silkscreen-Regular.ttf" id="2_8bgga"]
+[ext_resource type="AudioStream" uid="uid://bh8wy018oob4g" path="res://Assets/Sound/SFX/Bought.mp3" id="2_iehkk"]
+[ext_resource type="Texture2D" uid="uid://dqb45xs3dv146" path="res://Assets/Buttons/OptionsBackButtonIdle.png" id="2_trre5"]
+[ext_resource type="AudioStream" uid="uid://d6q1nny2pjsc" path="res://Assets/Sound/SFX/click.mp3" id="3_qtl74"]
+[ext_resource type="Texture2D" uid="uid://t0uirm11f231" path="res://Assets/Buttons/OptionsBackButtonHover.png" id="3_s46qq"]
+[ext_resource type="Texture2D" uid="uid://bu3wllndps1nt" path="res://Assets/Entities/Bean.png" id="6_i22r3"]
+[ext_resource type="Texture2D" uid="uid://cutnks07hdjl" path="res://Assets/Buttons/BuyButtonIdle.png" id="7_l04vt"]
+[ext_resource type="Texture2D" uid="uid://bj64hm8qrhxun" path="res://Assets/Buttons/BuyButtonHover.png" id="8_o6ep0"]
+[ext_resource type="Texture2D" uid="uid://cm43v08umk4wm" path="res://Assets/Buttons/BuyButtonDisabled.png" id="9_n88am"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1l736"]
+font = ExtResource("2_8bgga")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_h4ku1"]
+font = ExtResource("2_8bgga")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ei2ux"]
+font = ExtResource("2_8bgga")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_jsm3x"]
+font = ExtResource("2_8bgga")
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_w2yxk")
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_iehkk")
+bus = &"Sfx"
+
+[node name="SFXPlayerSpecial" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
+stream = ExtResource("3_qtl74")
+bus = &"Sfx"
+
+[node name="BackgroundView" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BackgroundView"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BackgroundView/ParallaxBackground"]
+
+[node name="Skies" type="Sprite2D" parent="BackgroundView/ParallaxBackground/ParallaxLayer"]
+position = Vector2(576.5, 410)
+scale = Vector2(1.13184, 1.07422)
+texture = ExtResource("1_7slgv")
+
+[node name="UIView" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UIView"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGround" type="ColorRect" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = 177.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.584314)
+
+[node name="Backbutton" type="TextureButton" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -83.9999
+offset_right = 25.0
+offset_bottom = -69.9999
+grow_vertical = 0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_trre5")
+texture_hover = ExtResource("3_s46qq")
+
+[node name="SettingsLabel" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -212.0
+offset_top = 56.0
+offset_right = 246.0
+offset_bottom = 150.0
+grow_horizontal = 2
+text = "Bean Shop"
+label_settings = SubResource("LabelSettings_1l736")
+
+[node name="Bean" type="TextureRect" parent="UIView/UI"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 48.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_i22r3")
+
+[node name="Currency" type="Label" parent="UIView/UI/Bean"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 5.0
+offset_right = 376.0
+offset_bottom = 29.0
+text = "45
+"
+label_settings = SubResource("LabelSettings_h4ku1")
+
+[node name="StartDistance" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -134.0
+offset_right = 115.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Distance:"
+label_settings = SubResource("LabelSettings_ei2ux")
+
+[node name="Next" type="Label" parent="UIView/UI/StartDistance"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 73.0
+offset_right = 173.0
+offset_bottom = 121.0
+text = "Next: 2
+Price: 25"
+label_settings = SubResource("LabelSettings_jsm3x")
+
+[node name="CurrentLevel" type="Label" parent="UIView/UI/StartDistance"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 41.0
+offset_right = 173.0
+offset_bottom = 67.0
+text = "Current Level: 1"
+label_settings = SubResource("LabelSettings_jsm3x")
+
+[node name="BuyButtonDistance" type="TextureButton" parent="UIView/UI/StartDistance"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 49.0
+offset_right = 248.0
+offset_bottom = 81.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("7_l04vt")
+texture_hover = ExtResource("8_o6ep0")
+texture_disabled = ExtResource("9_n88am")
+
+[node name="Desc" type="Label" parent="UIView/UI/StartDistance"]
+offset_left = 5.0
+offset_top = 120.0
+offset_right = 255.0
+offset_bottom = 168.0
+text = "increases start distance."
+label_settings = SubResource("LabelSettings_jsm3x")
+
+[node name="TravelSpeed" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -508.0
+offset_top = -134.0
+offset_right = -246.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Travel speed:"
+label_settings = SubResource("LabelSettings_ei2ux")
+
+[node name="Next" type="Label" parent="UIView/UI/TravelSpeed"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 73.0
+offset_right = 173.0
+offset_bottom = 121.0
+text = "Next: 2
+Price: 25"
+label_settings = SubResource("LabelSettings_jsm3x")
+
+[node name="CurrentLevel" type="Label" parent="UIView/UI/TravelSpeed"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 41.0
+offset_right = 173.0
+offset_bottom = 67.0
+text = "Current Level: 1"
+label_settings = SubResource("LabelSettings_jsm3x")
+
+[node name="BuyButton" type="TextureButton" parent="UIView/UI/TravelSpeed"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 49.0
+offset_right = 248.0
+offset_bottom = 81.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("7_l04vt")
+texture_hover = ExtResource("8_o6ep0")
+texture_disabled = ExtResource("9_n88am")
+
+[node name="Desc" type="Label" parent="UIView/UI/TravelSpeed"]
+offset_left = 5.0
+offset_top = 120.0
+offset_right = 255.0
+offset_bottom = 168.0
+text = "increases travel speed."
+label_settings = SubResource("LabelSettings_jsm3x")
+
+[node name="Powerups" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 224.0
+offset_top = -132.0
+offset_right = 486.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Powerups:"
+label_settings = SubResource("LabelSettings_ei2ux")
+
+[node name="Next" type="Label" parent="UIView/UI/Powerups"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 73.0
+offset_right = 173.0
+offset_bottom = 121.0
+text = "Next: 2
+Price: 60"
+label_settings = SubResource("LabelSettings_jsm3x")
+
+[node name="CurrentLevel" type="Label" parent="UIView/UI/Powerups"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 41.0
+offset_right = 173.0
+offset_bottom = 67.0
+text = "Current Level: 1"
+label_settings = SubResource("LabelSettings_jsm3x")
+
+[node name="BuyButtonPowerup" type="TextureButton" parent="UIView/UI/Powerups"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 49.0
+offset_right = 248.0
+offset_bottom = 81.0
+scale = Vector2(2, 2)
+texture_normal = ExtResource("7_l04vt")
+texture_hover = ExtResource("8_o6ep0")
+texture_disabled = ExtResource("9_n88am")
+
+[node name="Desc" type="Label" parent="UIView/UI/Powerups"]
+offset_left = 5.0
+offset_top = 120.0
+offset_right = 255.0
+offset_bottom = 168.0
+text = "increases spawn chance and 
+x2 duration time"
+label_settings = SubResource("LabelSettings_jsm3x")
+
+[connection signal="pressed" from="UIView/UI/Backbutton" to="." method="_on_backbutton_pressed"]
+[connection signal="pressed" from="UIView/UI/StartDistance/BuyButtonDistance" to="." method="_on_buy_button_distance_pressed"]
+[connection signal="pressed" from="UIView/UI/TravelSpeed/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="UIView/UI/Powerups/BuyButtonPowerup" to="." method="_on_buy_button_powerup_pressed"]
