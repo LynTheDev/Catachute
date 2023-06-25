@@ -91,6 +91,7 @@ text = "Beans: "
 label_settings = SubResource("LabelSettings_d6hcc")
 
 [node name="DebugStuff" type="Label" parent="UIView/UI"]
+visible = false
 layout_mode = 0
 offset_left = 20.0
 offset_top = 302.0

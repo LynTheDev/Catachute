@@ -82,7 +82,7 @@ func _physics_process(_delta):
 	$"../UIView/UI/Beans".text = "Beans: %d" % [Glob.game_beans]
 
 	# $"../UIView/UI/DebugStuff".text = "start dist: %d\ntravel speed: %f\nchance: %f\nchance time: %f\nbean time: %f\npowerup: %d" % [Glob.distance_start, Glob.travel_speed, chance, $ChanceTimer.wait_time, $"../BeanManager/BeanSpawner".wait_time, Glob.powerup_chance]
-	$"../UIView/UI/DebugStuff".text = "powerup time: %d\nbean col: %d" % [Glob.powerup_time, Glob.bean_collection]
+	# $"../UIView/UI/DebugStuff".text = "powerup time: %d\nbean col: %d" % [Glob.powerup_time, Glob.bean_collection]
 
 	if $MultiDuration.wait_time > 0:
 		var scale_fct = 90 / $MultiDuration.wait_time
@@ -100,7 +100,7 @@ func _physics_process(_delta):
 			change_chances()
 	else:
 		ticked_once = false
-	
+		
 	if Input.is_action_pressed("left"):
 		$Cat.flip_h = true
 
@@ -115,6 +115,9 @@ func _physics_process(_delta):
 			$Parachute.rotation_degrees -= 3
 		else:
 			$Parachute.rotation_degrees = -30
+	
+	if Input.is_action_pressed("left") and Input.is_action_pressed("right"):
+		$Parachute.rotation_degrees = move_toward($Parachute.rotation_degrees, 0, 2)
 
 	var direction = Input.get_axis("left", "right")
 	if direction:	
