@@ -109,9 +109,8 @@ offset_top = 37.0
 offset_right = 308.5
 offset_bottom = 97.0
 grow_horizontal = 2
-text = "THEJEGO/SPuddy: Playtesting
+text = "SPuddy: Playtesting/ideas
 Cania: Backgrounds
-spuddy: ideas
 "
 label_settings = SubResource("LabelSettings_p1w88")
 
