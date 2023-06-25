@@ -29,7 +29,7 @@ func _ready():
 	set_speed()
 
 
-func _process(_delta):
+func _physics_process(_delta):
 	position.y -= SPEED
 
 	if position.y < -60:

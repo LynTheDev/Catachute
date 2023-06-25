@@ -18,6 +18,7 @@ font = ExtResource("11_ssm6g")
 font_size = 70
 
 [node name="MainMenu" type="Node2D"]
+position = Vector2(-1, 0)
 script = ExtResource("1_r0a8x")
 
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]

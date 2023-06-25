@@ -8,7 +8,7 @@ radius = 19.3333
 height = 38.6667
 
 [node name="Bean" type="Area2D"]
-position = Vector2(549, 274)
+position = Vector2(250, 689)
 scale = Vector2(1.3, 1.3)
 collision_layer = 2
 script = ExtResource("1_bdwgi")

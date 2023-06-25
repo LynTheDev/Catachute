@@ -21,7 +21,7 @@ func _ready():
 	position.x = randi_range(265, 850)
 
 
-func _process(_delta):
+func _physics_process(_delta):
 	position.y -= SPEED
 	rotation_degrees += ROTATION_SPEED
 

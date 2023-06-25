@@ -18,10 +18,10 @@ func _ready():
 	var viewport_size = get_viewport().get_visible_rect().size
 
 	position.y = viewport_size.y
-	position.x = randi_range(0, viewport_size.x + 1)
+	position.x = randi_range(250, 885)
 
 
-func _process(_delta):
+func _physics_process(_delta):
 	position.y -= SPEED
 	rotation_degrees += ROTATION_SPEED
 

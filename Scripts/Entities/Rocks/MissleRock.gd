@@ -20,7 +20,7 @@ func _ready():
 	set_speed()
 
 
-func _process(_delta):
+func _physics_process(_delta):
 	if can_move:
 		$MRock.rotation_degrees += ROTATION_SPEED
 		position.y -= SPEED

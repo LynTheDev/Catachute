@@ -50,7 +50,7 @@ func _ready():
 	pick_sprite()
 
 
-func _process(_delta):
+func _physics_process(_delta):
 	position.y -= SPEED
 
 	if position.y < -20:
