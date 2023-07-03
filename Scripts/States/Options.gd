@@ -7,14 +7,25 @@ var check_mark_idle_spr = preload("res://Assets/Buttons/CheckMarkIdle.png")
 
 
 func _ready():
+	$Version.text = "version: {0}".format({"0": Glob.version})
 	$SFXPlayer.play()
 
 
 func _process(_delta):
+	if not ResourceLoader.exists("user://user_data.tres"):
+		$"UIView/UI/DeleteSave".disabled = true
+	else:
+		$"UIView/UI/DeleteSave".disabled = false
+
 	if $"UIView/UI/FullScreenCheck".is_pressed():
 		$"UIView/UI/FullScreenCheck".texture_normal = check_mark_active_spr
 	else:	
 		$"UIView/UI/FullScreenCheck".texture_normal = check_mark_idle_spr
+	
+	if $"UIView/UI/CursorCheck".is_pressed():
+		$"UIView/UI/CursorCheck".texture_normal = check_mark_active_spr
+	else:	
+		$"UIView/UI/CursorCheck".texture_normal = check_mark_idle_spr
 	
 	if $"UIView/UI/SoundLabel/MasterLabel/MasterMute".is_pressed():
 		$"UIView/UI/SoundLabel/MasterLabel/MasterMute".texture_normal = check_mark_active_spr
@@ -41,6 +52,11 @@ func _process(_delta):
 		$"UIView/UI/FullScreenCheck".set_pressed(true)
 	else:	
 		$"UIView/UI/FullScreenCheck".set_pressed(false)
+	
+	if Glob.mouse_hide:
+		$"UIView/UI/CursorCheck".set_pressed(true)
+	else:
+		$"UIView/UI/CursorCheck".set_pressed(false)
 	
 	if AudioServer.is_bus_mute(AudioServer.get_bus_index("Master")) == true:
 		$"UIView/UI/SoundLabel/MasterLabel/MasterMute".set_pressed(true)
@@ -129,3 +145,52 @@ func _on_sfx_mute_pressed():
 
 func _on_music_mute_pressed():
 	$SFXPlayer.play()
+
+
+func _on_cursor_check_toggled(button_pressed: bool):
+	if button_pressed:
+		$"UIView/UI/CursorCheck".texture_normal = check_mark_active_spr
+		Glob.mouse_hide = true
+	else:
+		$"UIView/UI/CursorCheck".texture_normal = check_mark_idle_spr
+		Glob.mouse_hide = false
+
+
+func _on_cursor_check_pressed():
+	$SFXPlayer.play()
+
+
+func _on_delete_save_pressed():
+	$SFXPlayer.play()
+	$"UIView/UI/WarningPanel".visible = true
+
+
+func _on_no_button_pressed():
+	$SFXPlayer.play()
+	$"UIView/UI/WarningPanel".visible = false
+
+func _on_yes_button_pressed():
+	$SFXPlayer.play()
+	if ResourceLoader.exists("user://user_data.tres"):
+		$SFXPlayer.play()
+		
+		DirAccess.remove_absolute("user://user_data.tres")
+
+		Glob.beans = 0
+		Glob.best_dist = 0
+		Glob.has_brandon = false
+		Glob.brandon_equipped = false
+
+		Glob.travel_level = 1
+		Glob.travel_speed = Glob.speed_data[Glob.travel_level]["speed"]
+
+		Glob.distance_level = 1
+		Glob.distance_start = Glob.distance_data[Glob.distance_level]["distance"]
+
+		Glob.powerup_level = 1
+		Glob.powerup_chance = Glob.powerup_data[Glob.powerup_level]["chance"]
+		Glob.powerup_time = Glob.powerup_data[Glob.powerup_level]["time"]
+
+		Save.save_game()
+
+		$"UIView/UI/WarningPanel".visible = false

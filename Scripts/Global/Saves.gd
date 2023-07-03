@@ -11,6 +11,8 @@ func save_game():
 	saved_data.travel_level = Glob.travel_level
 	saved_data.distance_level = Glob.distance_level
 	saved_data.powerup_level = Glob.powerup_level
+	saved_data.has_brandon = Glob.has_brandon
+	saved_data.brandon_equipped = Glob.brandon_equipped
 
 	ResourceSaver.save(saved_data, save_path)
 	print("Dev info: saved")
@@ -22,6 +24,8 @@ func load_game():
 
 		Glob.beans = saved.beans
 		Glob.best_dist = saved.high_scowore
+		Glob.brandon_equipped = saved.brandon_equipped
+		Glob.has_brandon = saved.has_brandon
 
 		Glob.travel_level = saved.travel_level
 		Glob.travel_speed = Glob.speed_data[Glob.travel_level]["speed"]

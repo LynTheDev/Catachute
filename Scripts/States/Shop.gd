@@ -120,3 +120,7 @@ func _on_buy_button_powerup_pressed():
 
 		update_text()
 		Save.save_game()
+
+
+func _on_costumes_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/CostumesShop.tscn")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhugp2lw1ubg8"]
+[gd_scene load_steps=17 format=3 uid="uid://bhugp2lw1ubg8"]
 
 [ext_resource type="Texture2D" uid="uid://c064ropuqct40" path="res://Assets/OnlineAssets/nightbackgroundwithmoon.png" id="1_7slgv"]
 [ext_resource type="Script" path="res://Scripts/States/Shop.gd" id="1_w2yxk"]
@@ -25,6 +25,10 @@ font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_jsm3x"]
 font = ExtResource("2_8bgga")
+
+[sub_resource type="LabelSettings" id="LabelSettings_tbtat"]
+font = ExtResource("2_8bgga")
+font_size = 8
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_w2yxk")
@@ -164,6 +168,7 @@ texture_hover = ExtResource("8_o6ep0")
 texture_disabled = ExtResource("9_n88am")
 
 [node name="Desc" type="Label" parent="UIView/UI/StartDistance"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 120.0
 offset_right = 255.0
@@ -218,6 +223,7 @@ texture_hover = ExtResource("8_o6ep0")
 texture_disabled = ExtResource("9_n88am")
 
 [node name="Desc" type="Label" parent="UIView/UI/TravelSpeed"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 120.0
 offset_right = 255.0
@@ -272,6 +278,7 @@ texture_hover = ExtResource("8_o6ep0")
 texture_disabled = ExtResource("9_n88am")
 
 [node name="Desc" type="Label" parent="UIView/UI/Powerups"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 120.0
 offset_right = 255.0
@@ -280,7 +287,28 @@ text = "increases spawn chance and
 x2 duration time"
 label_settings = SubResource("LabelSettings_jsm3x")
 
+[node name="CostumesButton" type="TextureButton" parent="UIView/UI"]
+layout_mode = 0
+offset_left = 1092.0
+offset_top = 557.0
+offset_right = 1100.0
+offset_bottom = 571.0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_trre5")
+texture_hover = ExtResource("3_s46qq")
+flip_h = true
+
+[node name="Label" type="Label" parent="UIView/UI/CostumesButton"]
+layout_mode = 0
+offset_left = -48.6001
+offset_top = -0.200012
+offset_right = -1.60005
+offset_bottom = 13.8
+text = "Costumes"
+label_settings = SubResource("LabelSettings_tbtat")
+
 [connection signal="pressed" from="UIView/UI/Backbutton" to="." method="_on_backbutton_pressed"]
 [connection signal="pressed" from="UIView/UI/StartDistance/BuyButtonDistance" to="." method="_on_buy_button_distance_pressed"]
 [connection signal="pressed" from="UIView/UI/TravelSpeed/BuyButton" to="." method="_on_buy_button_pressed"]
 [connection signal="pressed" from="UIView/UI/Powerups/BuyButtonPowerup" to="." method="_on_buy_button_powerup_pressed"]
+[connection signal="pressed" from="UIView/UI/CostumesButton" to="." method="_on_costumes_button_pressed"]
