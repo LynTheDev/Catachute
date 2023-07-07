@@ -13,6 +13,7 @@ func save_game():
 	saved_data.powerup_level = Glob.powerup_level
 	saved_data.has_brandon = Glob.has_brandon
 	saved_data.brandon_equipped = Glob.brandon_equipped
+	saved_data.has_catcher = Glob.has_catcher
 
 	ResourceSaver.save(saved_data, save_path)
 	print("Dev info: saved")
@@ -36,6 +37,8 @@ func load_game():
 		Glob.powerup_level = saved.powerup_level
 		Glob.powerup_chance = Glob.powerup_data[Glob.powerup_level]["chance"]
 		Glob.powerup_time = Glob.powerup_data[Glob.powerup_level]["time"]
+		
+		Glob.has_catcher = saved.has_catcher
 		print("Dev info: loaded")
 	else:
 		print("Dev info: No save file found.")

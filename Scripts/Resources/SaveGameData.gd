@@ -21,3 +21,6 @@ var brandon_equipped: bool
 
 @export
 var has_brandon: bool
+
+@export
+var has_catcher: bool

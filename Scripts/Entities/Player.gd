@@ -37,7 +37,7 @@ func kill():
 	
 	Glob.beans += Glob.game_beans
 	# Just for testing purposes lmao
-	Glob.beans = 32823493
+	# Glob.beans = 32823493
 
 	Glob.game_dist = distance_travelled
 

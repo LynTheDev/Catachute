@@ -43,5 +43,7 @@ func _on_area_entered(area: Area2D):
 		$"../../SFXPlayer".stream = pickup_sound
 		$"../../SFXPlayer".play()
 		
-		Glob.game_beans += Glob.bean_collection
+		var player = get_node("../../Player")
+		player.get_small()
+		
 		queue_free()
