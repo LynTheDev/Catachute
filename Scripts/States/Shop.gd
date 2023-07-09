@@ -67,6 +67,20 @@ func _process(_delta):
 			$"UIView/UI/Powerups/BuyButtonPowerup".disabled = true
 		else:
 			$"UIView/UI/Powerups/BuyButtonPowerup".disabled = false
+	
+	if Glob.beans < 1500:
+		$"UIView/UI/ParachuteCatcher/BuyCatchButton".disabled = true
+	else:
+		$"UIView/UI/ParachuteCatcher/BuyCatchButton".disabled = false
+	
+	if Glob.has_catcher:
+		$"UIView/UI/ParachuteCatcher/BuyCatchButton".visible = false
+		$"UIView/UI/ParachuteCatcher/Price".visible = false
+		$"UIView/UI/ParachuteCatcher/Bought".visible = true
+	else:
+		$"UIView/UI/ParachuteCatcher/BuyCatchButton".visible = true
+		$"UIView/UI/ParachuteCatcher/Price".visible = true
+		$"UIView/UI/ParachuteCatcher/Bought".visible = false
 
 
 func _on_backbutton_pressed():
@@ -119,4 +133,24 @@ func _on_buy_button_powerup_pressed():
 		Glob.powerup_chance = Glob.powerup_data[next_level]["chance"]
 
 		update_text()
+		Save.save_game()
+
+
+func _on_costumes_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/CostumesShop.tscn")
+
+
+func _on_buy_catch_button_pressed():
+	if Glob.beans >= 1500:
+		$SFXPlayer.play()
+
+		Glob.has_catcher = true
+		Glob.beans -= 1500
+
+		$"UIView/UI/ParachuteCatcher/BuyCatchButton".visible = false
+		$"UIView/UI/ParachuteCatcher/Price".visible = false
+		$"UIView/UI/ParachuteCatcher/Bought".visible = true
+
+		update_text()
+
 		Save.save_game()

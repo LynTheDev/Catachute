@@ -113,4 +113,19 @@ var powerup_time: int = powerup_data[powerup_level]["time"]
 var bean_collection := 1
 
 @export 
+var brandon_equipped := false
+
+@export
+var has_brandon := false
+
+@export 
 var player_speed := 300
+
+@export
+var version := 2.0
+
+@export
+var mouse_hide := true
+
+@export
+var has_catcher := false

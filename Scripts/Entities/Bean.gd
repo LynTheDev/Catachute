@@ -36,3 +36,11 @@ func _on_body_entered(body):
 		
 		Glob.game_beans += Glob.bean_collection
 		queue_free()
+
+func _on_area_entered(area: Area2D):
+	if area.get_collision_layer() == 16 and Glob.has_catcher:
+		$"../../SFXPlayer".stream = pickup_sound
+		$"../../SFXPlayer".play()
+		
+		Glob.game_beans += Glob.bean_collection
+		queue_free()

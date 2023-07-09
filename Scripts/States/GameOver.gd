@@ -5,8 +5,22 @@ var hs := false
 
 var crash_sound = preload("res://Assets/Sound/SFX/Crash.mp3")
 
+# B r a n d o n
+var brandon_sprite = preload("res://Assets/Entities/Player/Catdon_Idle.png")
+
+
+func _process(_delta):
+	if Input.is_action_pressed("quick_restart"):
+		Trans.switch_anim("res://Scenes/Game.tscn")
+
 
 func _ready():
+	if Glob.mouse_hide:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE);
+
+	if Glob.brandon_equipped:
+		$Player.texture = brandon_sprite
+
 	if not $"SFXPlayer".is_playing():
 		$"SFXPlayer".stream = crash_sound
 		$"SFXPlayer".play()

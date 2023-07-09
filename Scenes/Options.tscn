@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dyj6r7gif1m1s"]
+[gd_scene load_steps=26 format=3 uid="uid://dyj6r7gif1m1s"]
 
 [ext_resource type="Texture2D" uid="uid://c064ropuqct40" path="res://Assets/OnlineAssets/nightbackgroundwithmoon.png" id="1_rkslk"]
 [ext_resource type="Script" path="res://Scripts/States/Options.gd" id="1_ywmbh"]
@@ -8,6 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://t0uirm11f231" path="res://Assets/Buttons/OptionsBackButtonHover.png" id="4_wqnuv"]
 [ext_resource type="Texture2D" uid="uid://vj7px6kld8x6" path="res://Assets/Buttons/CheckMarkChecked.png" id="5_h03ip"]
 [ext_resource type="AudioStream" uid="uid://d6q1nny2pjsc" path="res://Assets/Sound/SFX/click.mp3" id="8_1yj6k"]
+[ext_resource type="Texture2D" uid="uid://cmojuo00qqkrv" path="res://Assets/Buttons/DeleteSaveButtonIdle.png" id="8_u0rbt"]
+[ext_resource type="Texture2D" uid="uid://d33v2g2bbf7u2" path="res://Assets/Buttons/DeleteSaveButtonHover.png" id="9_7c2ly"]
+[ext_resource type="Texture2D" uid="uid://vr78qi2kqrb0" path="res://Assets/Buttons/DeleteSaveButtonDisabled.png" id="10_u1pgl"]
+[ext_resource type="Texture2D" uid="uid://d164ianx2nhg" path="res://Assets/Entities/DeleteSaveBG.png" id="11_tl52u"]
+[ext_resource type="Texture2D" uid="uid://dsm4ylo1tofp" path="res://Assets/Buttons/NoButtonIdle.png" id="12_i1krm"]
+[ext_resource type="Texture2D" uid="uid://djt471vp734cs" path="res://Assets/Buttons/NoButtonHover.png" id="13_no1ey"]
+[ext_resource type="Texture2D" uid="uid://cr1kufudd84uj" path="res://Assets/Buttons/YesButtonIdle.png" id="14_uidau"]
+[ext_resource type="Texture2D" uid="uid://dh6ck54i87rj8" path="res://Assets/Buttons/YesButtonHover.png" id="15_mtmgr"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5slga"]
 font = ExtResource("2_akiah")
@@ -30,6 +38,16 @@ font = ExtResource("2_akiah")
 font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_oet37"]
+font = ExtResource("2_akiah")
+
+[sub_resource type="LabelSettings" id="LabelSettings_53o0s"]
+font = ExtResource("2_akiah")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_1e8fn"]
+font = ExtResource("2_akiah")
+
+[sub_resource type="LabelSettings" id="LabelSettings_x6l5y"]
 font = ExtResource("2_akiah")
 
 [node name="Options" type="Node2D"]
@@ -67,24 +85,43 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.584314)
 
-[node name="FullScreenLabel" type="Label" parent="UIView/UI"]
+[node name="CursorCheck" type="TextureButton" parent="UIView/UI"]
 layout_mode = 0
-offset_left = 49.0
-offset_top = 196.0
-offset_right = 227.0
-offset_bottom = 232.0
-text = "FullScreen:"
+offset_left = 455.0
+offset_top = 202.0
+offset_right = 471.0
+offset_bottom = 218.0
+scale = Vector2(2, 2)
+toggle_mode = true
+texture_normal = ExtResource("4_g0gmt")
+
+[node name="CursorLabel" type="Label" parent="UIView/UI"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 200.0
+offset_right = 235.0
+offset_bottom = 236.0
+text = "no Cursor in play mode:"
 label_settings = SubResource("LabelSettings_5slga")
 
 [node name="FullScreenCheck" type="TextureButton" parent="UIView/UI"]
 layout_mode = 0
-offset_left = 244.0
-offset_top = 197.0
-offset_right = 260.0
-offset_bottom = 213.0
+offset_left = 243.0
+offset_top = 155.0
+offset_right = 259.0
+offset_bottom = 171.0
 scale = Vector2(2, 2)
 toggle_mode = true
 texture_normal = ExtResource("4_g0gmt")
+
+[node name="FullScreenLabel" type="Label" parent="UIView/UI"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 154.0
+offset_right = 235.0
+offset_bottom = 190.0
+text = "FullScreen:"
+label_settings = SubResource("LabelSettings_5slga")
 
 [node name="CreditsLabel" type="Label" parent="UIView/UI"]
 layout_mode = 1
@@ -110,8 +147,7 @@ offset_right = 308.5
 offset_bottom = 97.0
 grow_horizontal = 2
 text = "SPuddy: Playtesting/ideas
-Cania: Backgrounds
-"
+Cania: Backgrounds"
 label_settings = SubResource("LabelSettings_p1w88")
 
 [node name="ControlLabel" type="Label" parent="UIView/UI"]
@@ -138,7 +174,8 @@ offset_right = 212.5
 offset_bottom = 97.0
 grow_horizontal = 2
 text = "A/D: STEER Left/Right
-ESC/P: PAUSE/UNPAUSE"
+ESC/P: PAUSE/UNPAUSE
+SPACE: QUICK RESET"
 label_settings = SubResource("LabelSettings_p1w88")
 
 [node name="SettingsLabel" type="Label" parent="UIView/UI"]
@@ -257,11 +294,115 @@ scale = Vector2(5, 5)
 texture_normal = ExtResource("3_8mu6h")
 texture_hover = ExtResource("4_wqnuv")
 
+[node name="DeleteSave" type="TextureButton" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_top = -54.0001
+offset_right = -202.0
+offset_bottom = -44.0001
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("8_u0rbt")
+texture_hover = ExtResource("9_7c2ly")
+texture_disabled = ExtResource("10_u1pgl")
+
+[node name="WarningPanel" type="Panel" parent="UIView/UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -254.5
+offset_top = -114.0
+offset_right = 254.5
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BG" type="TextureRect" parent="UIView/UI/WarningPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_tl52u")
+metadata/_edit_use_anchors_ = true
+
+[node name="WarningText" type="Label" parent="UIView/UI/WarningPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -182.5
+offset_right = 182.5
+offset_bottom = 55.0
+grow_horizontal = 2
+text = "Are you sure?
+"
+label_settings = SubResource("LabelSettings_53o0s")
+
+[node name="WarningText2" type="Label" parent="UIView/UI/WarningPanel/WarningText"]
+modulate = Color(0.776471, 0, 0, 1)
+layout_mode = 0
+offset_left = 68.0
+offset_top = 47.0
+offset_right = 308.0
+offset_bottom = 73.0
+text = "This cannot be undone."
+label_settings = SubResource("LabelSettings_1e8fn")
+
+[node name="NoButton" type="TextureButton" parent="UIView/UI/WarningPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 416.0
+offset_top = -47.0
+offset_right = 436.0
+offset_bottom = -37.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("12_i1krm")
+texture_hover = ExtResource("13_no1ey")
+
+[node name="YesButton" type="TextureButton" parent="UIView/UI/WarningPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = -47.0
+offset_right = 57.0
+offset_bottom = -37.0
+grow_vertical = 0
+scale = Vector2(3, 3)
+texture_normal = ExtResource("14_uidau")
+texture_hover = ExtResource("15_mtmgr")
+
 [node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, 1)
 stream = ExtResource("8_1yj6k")
 bus = &"Sfx"
 
+[node name="Version" type="Label" parent="."]
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 123.0
+offset_bottom = 27.0
+text = "Version: 1.1"
+label_settings = SubResource("LabelSettings_x6l5y")
+
+[connection signal="pressed" from="UIView/UI/CursorCheck" to="." method="_on_cursor_check_pressed"]
+[connection signal="toggled" from="UIView/UI/CursorCheck" to="." method="_on_cursor_check_toggled"]
 [connection signal="pressed" from="UIView/UI/FullScreenCheck" to="." method="_on_full_screen_check_pressed"]
 [connection signal="toggled" from="UIView/UI/FullScreenCheck" to="." method="_on_full_screen_check_toggled"]
 [connection signal="pressed" from="UIView/UI/SoundLabel/MusicLabel/MusicMute" to="." method="_on_music_mute_pressed"]
@@ -273,3 +414,6 @@ bus = &"Sfx"
 [connection signal="pressed" from="UIView/UI/SoundLabel/AmbienceLabel/AmbienceMute" to="." method="_on_ambience_mute_pressed"]
 [connection signal="toggled" from="UIView/UI/SoundLabel/AmbienceLabel/AmbienceMute" to="." method="_on_ambience_mute_toggled"]
 [connection signal="pressed" from="UIView/UI/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="UIView/UI/DeleteSave" to="." method="_on_delete_save_pressed"]
+[connection signal="pressed" from="UIView/UI/WarningPanel/NoButton" to="." method="_on_no_button_pressed"]
+[connection signal="pressed" from="UIView/UI/WarningPanel/YesButton" to="." method="_on_yes_button_pressed"]

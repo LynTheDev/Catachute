@@ -11,6 +11,9 @@ var missle_rock = preload("res://Scenes/Entities/MissleRock.tscn")
 var smoll_powerup = preload("res://Scenes/Entities/SmollPowerup.tscn")
 var multi_powerup = preload("res://Scenes/Entities/BeanMultipler.tscn")
 
+# B r a n d o n
+var brandon_sprite = preload("res://Assets/Entities/Player/Catdon.png")
+
 var distance_travelled := Glob.distance_start
 var chance := 43.0
 var ticked_once := false
@@ -42,32 +45,40 @@ func kill():
 
 
 func change_chances():
-	chance += 1
+	if chance < 60:
+		chance += 1
+
 	if $ChanceTimer.wait_time > 0:
 		$ChanceTimer.wait_time -= 0.1
 	else:
 		$ChanceTimer.wait_time = 0
 	
-	if $"../BeanManager/BeanSpawner".wait_time > 0:
-		$"../BeanManager/BeanSpawner".wait_time -= 0.2
-	else:
-		$"../BeanManager/BeanSpawner".wait_time = 0
+	if distance_travelled < 501:
+		if $"../BeanManager/BeanSpawner".wait_time > 0:
+			$"../BeanManager/BeanSpawner".wait_time -= 0.2
+		else:
+			$"../BeanManager/BeanSpawner".wait_time = 0
 	
 	ticked_once = true
 
 
 func _ready():
+	if Glob.brandon_equipped:
+		$Cat.texture = brandon_sprite
+	
 	if Glob.distance_level > 4:
 		chance += 1
+		
 		if $ChanceTimer.wait_time > 0:
 			$ChanceTimer.wait_time -= 0.1
 		else:
 			$ChanceTimer.wait_time = 0
 	
-		if $"../BeanManager/BeanSpawner".wait_time > 0:
-			$"../BeanManager/BeanSpawner".wait_time -= 0.2
-		else:
-			$"../BeanManager/BeanSpawner".wait_time = 0
+		if distance_travelled < 501:
+			if $"../BeanManager/BeanSpawner".wait_time > 0:
+				$"../BeanManager/BeanSpawner".wait_time -= 0.2
+			else:
+				$"../BeanManager/BeanSpawner".wait_time = 0
 	
 	$MeterCounter.wait_time = Glob.travel_speed
 	$MeterCounter.start()

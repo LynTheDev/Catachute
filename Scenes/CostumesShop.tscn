@@ -1,0 +1,205 @@
+[gd_scene load_steps=19 format=3 uid="uid://cmhsibd7gff5n"]
+
+[ext_resource type="Script" path="res://Scripts/States/CostumesShop.gd" id="1_oiemu"]
+[ext_resource type="Texture2D" uid="uid://c064ropuqct40" path="res://Assets/OnlineAssets/nightbackgroundwithmoon.png" id="1_v5rok"]
+[ext_resource type="Texture2D" uid="uid://dqb45xs3dv146" path="res://Assets/Buttons/OptionsBackButtonIdle.png" id="2_wnfki"]
+[ext_resource type="Texture2D" uid="uid://t0uirm11f231" path="res://Assets/Buttons/OptionsBackButtonHover.png" id="3_s70s6"]
+[ext_resource type="Texture2D" uid="uid://cutnks07hdjl" path="res://Assets/Buttons/BuyButtonIdle.png" id="4_f6hhc"]
+[ext_resource type="FontFile" uid="uid://gshbcghnt66a" path="res://Assets/Font/Silkscreen-Regular.ttf" id="4_suiyb"]
+[ext_resource type="Texture2D" uid="uid://bu3wllndps1nt" path="res://Assets/Entities/Bean.png" id="5_71ylj"]
+[ext_resource type="Texture2D" uid="uid://bj64hm8qrhxun" path="res://Assets/Buttons/BuyButtonHover.png" id="5_ra3d7"]
+[ext_resource type="Texture2D" uid="uid://cm43v08umk4wm" path="res://Assets/Buttons/BuyButtonDisabled.png" id="6_8cbu5"]
+[ext_resource type="AudioStream" uid="uid://bh8wy018oob4g" path="res://Assets/Sound/SFX/Bought.mp3" id="7_et0tu"]
+[ext_resource type="Texture2D" uid="uid://d18n40oukanr2" path="res://Assets/Buttons/CheckMarkIdle.png" id="7_f3dsc"]
+[ext_resource type="Texture2D" uid="uid://cynqmxnvyw3tv" path="res://Assets/Entities/Player/Catdon_Idle.png" id="8_8xnro"]
+[ext_resource type="AudioStream" uid="uid://d6q1nny2pjsc" path="res://Assets/Sound/SFX/click.mp3" id="8_m73wr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_i0t8j"]
+font = ExtResource("4_suiyb")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_267un"]
+font = ExtResource("4_suiyb")
+
+[sub_resource type="LabelSettings" id="LabelSettings_beg54"]
+font = ExtResource("4_suiyb")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_lq7fr"]
+font = ExtResource("4_suiyb")
+font_size = 70
+
+[sub_resource type="LabelSettings" id="LabelSettings_0c4ha"]
+font = ExtResource("4_suiyb")
+
+[node name="CostumesShop" type="Node2D"]
+script = ExtResource("1_oiemu")
+
+[node name="BackgroundView" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BackgroundView"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BackgroundView/ParallaxBackground"]
+
+[node name="Skies" type="Sprite2D" parent="BackgroundView/ParallaxBackground/ParallaxLayer"]
+position = Vector2(576.5, 410)
+scale = Vector2(1.13184, 1.07422)
+texture = ExtResource("1_v5rok")
+
+[node name="UIView" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="UIView"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackGround" type="ColorRect" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = 11.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.992934, 0.989742)
+color = Color(0, 0, 0, 0.584314)
+
+[node name="CatdonBuyLabel" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -145.0
+offset_right = 93.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Catdon:
+"
+label_settings = SubResource("LabelSettings_i0t8j")
+
+[node name="Price" type="Label" parent="UIView/UI/CatdonBuyLabel"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 69.0
+offset_right = 106.0
+offset_bottom = 93.0
+text = "Price: 999"
+label_settings = SubResource("LabelSettings_267un")
+
+[node name="Equi" type="Label" parent="UIView/UI/CatdonBuyLabel"]
+visible = false
+layout_mode = 0
+offset_left = 6.0
+offset_top = 95.0
+offset_right = 108.0
+offset_bottom = 119.0
+text = "Equipped:"
+label_settings = SubResource("LabelSettings_267un")
+
+[node name="BrandonEquip" type="TextureButton" parent="UIView/UI/CatdonBuyLabel/Equi"]
+layout_mode = 0
+offset_left = 93.0
+offset_top = -4.0
+offset_right = 109.0
+offset_bottom = 12.0
+scale = Vector2(2, 2)
+toggle_mode = true
+texture_normal = ExtResource("7_f3dsc")
+
+[node name="BrandonBuy" type="TextureButton" parent="UIView/UI/CatdonBuyLabel"]
+layout_mode = 0
+offset_left = 139.0
+offset_top = 58.0
+offset_right = 203.0
+offset_bottom = 90.0
+scale = Vector2(1.5, 1.5)
+texture_normal = ExtResource("4_f6hhc")
+texture_hover = ExtResource("5_ra3d7")
+texture_disabled = ExtResource("6_8cbu5")
+
+[node name="TextureRect" type="TextureRect" parent="UIView/UI/CatdonBuyLabel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = -19.0
+offset_right = 240.0
+offset_bottom = 21.0
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("8_8xnro")
+
+[node name="Backbutton" type="TextureButton" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -83.9999
+offset_right = 25.0
+offset_bottom = -69.9999
+grow_vertical = 0
+scale = Vector2(5, 5)
+texture_normal = ExtResource("2_wnfki")
+texture_hover = ExtResource("3_s70s6")
+
+[node name="Powerups" type="Label" parent="UIView/UI/Backbutton"]
+layout_mode = 0
+offset_left = 9.8
+offset_top = -2.28882e-05
+offset_right = 56.8
+offset_bottom = 14.0
+text = "Upgrades"
+label_settings = SubResource("LabelSettings_beg54")
+
+[node name="CostumeLabel" type="Label" parent="UIView/UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -212.0
+offset_top = 56.0
+offset_right = 246.0
+offset_bottom = 150.0
+grow_horizontal = 2
+text = "Costume Shop"
+label_settings = SubResource("LabelSettings_lq7fr")
+
+[node name="Bean" type="TextureRect" parent="UIView/UI"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 8.0
+offset_right = 49.0
+offset_bottom = 48.0
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_71ylj")
+
+[node name="Currency" type="Label" parent="UIView/UI/Bean"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 5.0
+offset_right = 376.0
+offset_bottom = 29.0
+text = "45
+"
+label_settings = SubResource("LabelSettings_0c4ha")
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_et0tu")
+bus = &"Sfx"
+
+[node name="SFXPlayerSpecial" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, 1)
+stream = ExtResource("8_m73wr")
+bus = &"Sfx"
+
+[connection signal="pressed" from="UIView/UI/CatdonBuyLabel/Equi/BrandonEquip" to="." method="_on_brandon_equip_pressed"]
+[connection signal="toggled" from="UIView/UI/CatdonBuyLabel/Equi/BrandonEquip" to="." method="_on_brandon_equip_toggled"]
+[connection signal="pressed" from="UIView/UI/CatdonBuyLabel/BrandonBuy" to="." method="_on_brandon_buy_pressed"]
+[connection signal="pressed" from="UIView/UI/Backbutton" to="." method="_on_backbutton_pressed"]

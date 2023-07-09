@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://wqkfajqw6ohg"]
+[gd_scene load_steps=22 format=3 uid="uid://wqkfajqw6ohg"]
 
 [ext_resource type="FontFile" uid="uid://gshbcghnt66a" path="res://Assets/Font/Silkscreen-Regular.ttf" id="1_7yiut"]
 [ext_resource type="Script" path="res://Scripts/States/Game.gd" id="1_nq1ar"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Managers/BeanManager.gd" id="3_jcmrx"]
 [ext_resource type="Script" path="res://Scripts/Managers/CloudManager.gd" id="3_jgwud"]
 [ext_resource type="Script" path="res://Scripts/Managers/ObstacleManager.gd" id="3_yrkgu"]
+[ext_resource type="Texture2D" uid="uid://yqerpphbpkdf" path="res://Assets/Buttons/Pause.png" id="4_d4q6o"]
 [ext_resource type="Script" path="res://Scripts/Managers/PauseManager.gd" id="4_vfpoe"]
 [ext_resource type="Texture2D" uid="uid://dhvg4jh61lmv" path="res://Assets/Buttons/ResumeButtonIdle.png" id="9_l6w4c"]
 [ext_resource type="Texture2D" uid="uid://bmnioc0nnse7t" path="res://Assets/Buttons/ResumeButtonHover.png" id="10_gvrtc"]
@@ -47,6 +48,13 @@ position = Vector2(980, 494)
 scale = Vector2(4, 4)
 texture_normal = ExtResource("17_djglg")
 action = "right"
+visibility_mode = 1
+
+[node name="Pause" type="TouchScreenButton" parent="."]
+position = Vector2(1087, 3)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("4_d4q6o")
+action = "pause"
 visibility_mode = 1
 
 [node name="AmbientPlayer" type="AudioStreamPlayer2D" parent="."]
